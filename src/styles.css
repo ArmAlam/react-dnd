@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+}
+
+.sideBar {
+    /* flex: 0 0 1; */
+    width: 220px;
+    padding: 10px;
+    border-right: 1px solid #111;
+    height: 100vh;
+    background: #e1e1e1;
+}
+
+.sideBarItem {
+    border: 1px solid #000;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 10px;
+    background: #ccc;
+}
+
+.page {
+    flex: 1 1 auto;
+    padding: 0 20px;
+    margin: 20px;
+    border: 1px solid green;
+}
+
+.dropZone {
+    flex: 0 0 auto;
+    height: 40px;
+    transition: 200ms all;
+}
+
+.dropZone:nth-of-type(2n) {
+    display: none;
+}
+
+.dropZone.horizontalDrag {
+    width: 40px;
+    height: auto;
+}
+
+.dropZone:not(.horizontalDrag).isLast {
+    flex: 1 1 auto;
+}
+
+.dropZone.active,
+.trashDropZone.active {
+    background: #00a2ff;
+    transition: 100ms all;
+}
+
+.component {
+    height: 60px;
+    padding: 10px;
+    background: #aaa;
+}
+
+.column {
+    border: 1px solid blue;
+    width: 100%;
+    padding: 10px;
+}
+
+.columns {
+    display: flex;
+    padding: 20px 0;
+}
+
+.columnContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 1 auto;
+    position: relative;
+    /* width: 1200px; */
+}
+
+.base {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    cursor: move;
+}
+
+.row {
+    border: 1px solid red;
+    padding: 0;
+    overflow-x: auto;
+}
+
+.trashDropZone {
+    position: relative;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border: 1px solid purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageContainer {
+    width: calc(100% - 220px);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+.handler {
+    width: 40px;
+    padding: 0;
+    cursor: ew-resize;
+    flex: 0 0 auto;
+}
+
+.handler::before {
+    content: "";
+    background-color: transparent;
+    display: block;
+    width: 4px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.columns > .handler:first-child {
+    visibility: hidden;
+}
+#modal {
+    background: rgb(252, 252, 205);
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 8px 12px;
+    display: none;
+    font-family: "Source Sans Pro";
+    text-align: center;
+    max-width: 480px;
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 30px;
+    transform: translate(-50%, 150%);
+}
+
+#modal.active {
+    animation: modalIn 300ms;
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
